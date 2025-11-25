@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "title": "Suspicious login from new location",
+    "severity": "medium",
+    "status": "open",
+    "createdAt": "2025-11-20T10:15:00.000Z",
+    "source": "SIEM",
+    "description": "User logged in from an unusual country with no prior history."
+  }
+]
