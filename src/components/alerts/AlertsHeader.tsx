@@ -1,13 +1,11 @@
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
-import type React from 'react';
+import { Box, Stack, TextField, Typography } from '@mui/material';
 
 interface AlertsHeaderProps {
   localSearch: string;
   onLocalSearchChange: (value: string) => void;
-  onSearchSubmit: React.FormEventHandler<HTMLFormElement>;
 }
 
-export function AlertsHeader({ localSearch, onLocalSearchChange, onSearchSubmit }: AlertsHeaderProps) {
+export function AlertsHeader({ localSearch, onLocalSearchChange }: AlertsHeaderProps) {
   return (
     <Stack
       direction={{ xs: 'column', sm: 'row' }}
@@ -25,7 +23,6 @@ export function AlertsHeader({ localSearch, onLocalSearchChange, onSearchSubmit 
       </Box>
       <Box
         component="form"
-        onSubmit={onSearchSubmit}
         display="flex"
         gap={1}
         width={{ xs: '100%', sm: 360 }}
@@ -34,12 +31,11 @@ export function AlertsHeader({ localSearch, onLocalSearchChange, onSearchSubmit 
           size="small"
           fullWidth
           value={localSearch}
-          onChange={(e) => onLocalSearchChange(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onLocalSearchChange(e.target.value)
+          }
           placeholder="Search by title, description, or source"
         />
-        <Button type="submit" variant="contained" size="small">
-          Search
-        </Button>
       </Box>
     </Stack>
   );

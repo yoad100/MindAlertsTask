@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { useAlerts } from '../hooks/useAlerts';
@@ -25,7 +25,7 @@ export function AlertsPage() {
   const page = Number(searchParams.get('page') ?? '1');
   const sortField = (searchParams.get('sortField') ?? 'createdAt') as AlertSortField;
   const sortDirection = (searchParams.get('sortDirection') ?? 'desc') as SortDirection;
-  const severities = parseMulti(searchParams.get('severity')) as AlertSeverity[];
+  const severities = parseMulti(searchParams.get('severity')) as AlertSeverity[]; 
   const statuses = parseMulti(searchParams.get('status')) as AlertStatus[];
   const search = searchParams.get('q') ?? '';
 
@@ -69,10 +69,15 @@ export function AlertsPage() {
     updateParams({ sortField: field, sortDirection: direction });
   };
 
-  const handleSearchSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-    updateParams({ q: localSearch || null, page: '1' });
-  };
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      updateParams({ q: localSearch || null, page: '1' });
+    }, 400);
+
+    return () => {
+      window.clearTimeout(handle);
+    };
+  }, [localSearch]);
 
   const handleExportCsv = () => {
     if (!data || !data.items.length) return;
@@ -115,7 +120,6 @@ export function AlertsPage() {
       <AlertsHeader
         localSearch={localSearch}
         onLocalSearchChange={setLocalSearch}
-        onSearchSubmit={handleSearchSubmit}
       />
 
       <AlertsFiltersPanel

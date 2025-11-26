@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { LabelsEditor } from '../components/LabelsEditor';
+import { LabelsEditor } from '../components/labels/LabelsEditor';
 
 describe('LabelsEditor', () => {
   it('adds and removes labels', () => {
@@ -11,19 +11,15 @@ describe('LabelsEditor', () => {
 
     render(<LabelsEditor labels={labels} onChange={handleChange} />);
 
-    const input = screen.getByPlaceholderText(/add label/i);
+    const input = screen.getByPlaceholderText(/add label and press enter/i);
     fireEvent.change(input, { target: { value: 'urgent' } });
-    const addButton = screen.getByRole('button', { name: /add/i });
-    fireEvent.click(addButton);
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter', charCode: 13 });
 
     expect(labels).toContain('urgent');
     expect(screen.getByText('urgent')).not.toBeNull();
 
     const chip = screen.getByRole('button', { name: /urgent/i });
-    const deleteIcon = chip.querySelector('svg');
-    if (deleteIcon) {
-      fireEvent.click(deleteIcon);
-    }
+    fireEvent.click(chip);
 
     expect(labels).not.toContain('urgent');
   });
