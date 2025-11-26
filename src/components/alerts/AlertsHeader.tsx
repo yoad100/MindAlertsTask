@@ -8,6 +8,7 @@ interface AlertsHeaderProps {
 export function AlertsHeader({ localSearch, onLocalSearchChange }: AlertsHeaderProps) {
   return (
     <Stack
+      role="search"
       direction={{ xs: 'column', sm: 'row' }}
       spacing={2}
       alignItems={{ xs: 'flex-start', sm: 'center' }}
@@ -30,11 +31,14 @@ export function AlertsHeader({ localSearch, onLocalSearchChange }: AlertsHeaderP
         <TextField
           size="small"
           fullWidth
+          label="Search alerts"
+          InputLabelProps={{ shrink: true }}
           value={localSearch}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             onLocalSearchChange(e.target.value)
           }
           placeholder="Search by title, description, or source"
+          role="searchbox"
         />
       </Box>
     </Stack>

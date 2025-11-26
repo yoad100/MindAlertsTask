@@ -70,6 +70,9 @@ export function AlertsFiltersPanel({
                   size="small"
                   color={active ? 'primary' : 'default'}
                   variant={active ? 'filled' : 'outlined'}
+                  role="button"
+                  aria-pressed={active}
+                  aria-label={active ? `Remove ${label} severity filter` : `Filter by ${label} severity`}
                   onClick={() => onToggleFilter('severity', sev)}
                 />
               );
@@ -92,6 +95,9 @@ export function AlertsFiltersPanel({
                   size="small"
                   color={active ? 'success' : 'default'}
                   variant={active ? 'filled' : 'outlined'}
+                  role="button"
+                  aria-pressed={active}
+                  aria-label={active ? `Remove ${label} status filter` : `Filter by ${label} status`}
                   onClick={() => onToggleFilter('status', st)}
                 />
               );

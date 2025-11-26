@@ -30,11 +30,11 @@ export function AlertsTable({ data, isLoading, isError, error }: AlertsTableProp
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Severity</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Source</TableCell>
-            <TableCell>Created</TableCell>
+            <TableCell scope="col">Title</TableCell>
+            <TableCell scope="col">Severity</TableCell>
+            <TableCell scope="col">Status</TableCell>
+            <TableCell scope="col">Source</TableCell>
+            <TableCell scope="col">Created</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -64,7 +64,7 @@ export function AlertsTable({ data, isLoading, isError, error }: AlertsTableProp
           {isError && (
             <TableRow>
               <TableCell colSpan={5}>
-                <Typography variant="body2" color="error">
+                <Typography variant="body2" color="error" role="alert">
                   Error: {error?.message ?? 'Failed to load alerts'}
                 </Typography>
               </TableCell>

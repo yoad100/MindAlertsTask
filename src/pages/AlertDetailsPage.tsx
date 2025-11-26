@@ -25,7 +25,7 @@ export function AlertDetailsPage() {
 
   if (isLoading) {
     return (
-      <Box display="flex" flexDirection="column" gap={2}>
+      <Box component="section" aria-busy="true" aria-label="Loading alert details" display="flex" flexDirection="column" gap={2}>
         <Skeleton variant="text" width="40%" />
         <Skeleton variant="rectangular" height={80} />
         <Skeleton variant="rectangular" height={200} />
@@ -36,7 +36,7 @@ export function AlertDetailsPage() {
   if (isError || !alert) {
     return (
       <Box display="flex" flexDirection="column" gap={1.5}>
-        <Typography variant="body2" color="error">
+        <Typography variant="body2" color="error" role="alert">
           Alert not found or failed to load.
         </Typography>
         <BackToAlertsLink />
