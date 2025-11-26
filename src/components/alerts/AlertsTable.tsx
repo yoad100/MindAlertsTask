@@ -1,4 +1,5 @@
 import {
+  Box,
   Link as MuiLink,
   Paper,
   Skeleton,
@@ -26,8 +27,9 @@ export function AlertsTable({ data, isLoading, isError, error }: AlertsTableProp
   const hasItems = !!data && data.items.length > 0;
 
   return (
-    <Paper variant="outlined" sx={{ overflow: 'hidden' }}>
-      <Table size="small">
+    <Paper variant="outlined" sx={{ overflowX: 'auto', overflowY: 'hidden' }}>
+      <Box sx={{ minWidth: 600 }}>
+        <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell scope="col">Title</TableCell>
@@ -107,7 +109,8 @@ export function AlertsTable({ data, isLoading, isError, error }: AlertsTableProp
               </TableRow>
             ))}
         </TableBody>
-      </Table>
+        </Table>
+      </Box>
     </Paper>
   );
 }
