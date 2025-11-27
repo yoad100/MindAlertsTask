@@ -93,7 +93,7 @@ export function AlertsFiltersPanel({
                   key={st}
                   label={label}
                   size="small"
-                  color={active ? 'success' : 'default'}
+                  color={active ? 'primary' : 'default'}
                   variant={active ? 'filled' : 'outlined'}
                   role="button"
                   aria-pressed={active}
